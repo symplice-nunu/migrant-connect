@@ -67,13 +67,46 @@ class MessageController extends Controller
     /**
      * Show the form for creating a new message (user search).
      */
-    public function create()
+    public function create(Request $request)
     {
-        $users = User::where('id', '!=', Auth::id())
-                     ->orderBy('name')
-                     ->get();
+        $currentUserId = Auth::id();
         
-        return view('messages.create', compact('users'));
+        // Build query for users
+        $query = User::query();
+        if ($currentUserId) {
+            $query->where('id', '!=', $currentUserId);
+        }
+        
+        // Filter by location if provided
+        if ($request->has('location') && $request->location !== '') {
+            $query->where('location', $request->location);
+        } else {
+            // When "All Locations" is selected, show all users (including those without location)
+            // No additional filter needed
+        }
+        
+        $users = $query->orderBy('name')->get();
+        
+        // Get unique locations for filter dropdown
+        $locationsQuery = User::query();
+        if ($currentUserId) {
+            $locationsQuery->where('id', '!=', $currentUserId);
+        }
+        
+        $locations = $locationsQuery->whereNotNull('location')
+                                   ->distinct()
+                                   ->pluck('location')
+                                   ->sort()
+                                   ->values();
+        
+        // Get total count of users for display
+        $totalUsersQuery = User::query();
+        if ($currentUserId) {
+            $totalUsersQuery->where('id', '!=', $currentUserId);
+        }
+        $totalUsers = $totalUsersQuery->count();
+        
+        return view('messages.create', compact('users', 'locations', 'totalUsers'));
     }
 
     /**
