@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Http\Controllers\MessageController;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Share unread message count with all views
+        View::composer('*', function ($view) {
+            if (Auth::check()) {
+                $unreadCount = MessageController::getUnreadCount(Auth::id());
+                $view->with('unreadMessageCount', $unreadCount);
+            }
+        });
     }
 }

@@ -74,7 +74,7 @@
         
         <header id="header" class="fixed w-full transition-all duration-300 z-50">
             <div class="container mx-auto px-4">
-                <div class="flex items-center justify-between py-4">
+                <div class="flex flex-wrap gap-4 items-center justify-between py-4">
                     <a href="/" class="flex items-center space-x-3 text-2xl font-bold text-gradient hover:scale-105 transition-transform">
                         <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
                             <i class="fas fa-globe-americas text-white text-xl"></i>
@@ -106,8 +106,7 @@
             </div>
         </header>
 
-        <main class="relative z-10">
-            <section class="hero min-h-screen flex items-center pt-20 pb-32">
+            <section class="hero min-h-screen flex items-center mt-10 pt-20 pb-32">
                 <div class="container mx-auto px-4">
                     <div class="max-w-4xl mx-auto text-center">
                         <div class="inline-flex items-center bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-6 py-3 rounded-full mb-8 text-sm font-semibold shadow-lg animate-pulse-slow">

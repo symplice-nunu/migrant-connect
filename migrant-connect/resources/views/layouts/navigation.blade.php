@@ -30,9 +30,16 @@
                         <span class="font-medium">Forums</span>
                     </x-nav-link>
                     
-                    <x-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="nav-link-enhanced">
-                        <i class="fas fa-envelope text-lg"></i>
-                        <span class="font-medium">Messages</span>
+                    <x-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="nav-link-enhanced relative">
+                        <i class="fas fa-comments text-lg"></i>
+                        <span class="font-medium">Chats</span>
+                        @if(isset($unreadMessageCount) && $unreadMessageCount > 0)
+                            <span class="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" data-unread-count>
+                                {{ $unreadMessageCount > 99 ? '99+' : $unreadMessageCount }}
+                            </span>
+                        @else
+                            <span class="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden" data-unread-count>0</span>
+                        @endif
                     </x-nav-link>
                 </div>
             </div>
@@ -105,9 +112,16 @@
                 <span class="font-medium">Forums</span>
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2">
-                <i class="fas fa-envelope text-lg"></i>
-                <span class="font-medium">Messages</span>
+            <x-responsive-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2 relative">
+                <i class="fas fa-comments text-lg"></i>
+                <span class="font-medium">Chats</span>
+                @if(isset($unreadMessageCount) && $unreadMessageCount > 0)
+                    <span class="absolute top-2 right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" data-unread-count>
+                        {{ $unreadMessageCount > 99 ? '99+' : $unreadMessageCount }}
+                    </span>
+                @else
+                    <span class="absolute top-2 right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden" data-unread-count>0</span>
+                @endif
             </x-responsive-nav-link>
         </div>
 

@@ -14,6 +14,10 @@
         <!-- Additional Font Awesome for enhanced icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+        <!-- Flatpickr Datepicker -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
@@ -52,6 +56,27 @@
             .particle:nth-child(7) { left: 70%; animation-delay: 2s; }
             .particle:nth-child(8) { left: 80%; animation-delay: 4s; }
             .particle:nth-child(9) { left: 90%; animation-delay: 1s; }
+            
+            /* Custom Flatpickr styles */
+            .flatpickr-calendar {
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                border: 1px solid #e5e7eb;
+            }
+            
+            .flatpickr-day.selected {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-color: #667eea;
+            }
+            
+            .flatpickr-day.selected:hover {
+                background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            }
+            
+            .flatpickr-day.today {
+                border-color: #667eea;
+                color: #667eea;
+            }
         </style>
     </head>
     <body class="font-sans antialiased bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
@@ -68,22 +93,29 @@
             <div class="particle w-4 h-4"></div>
         </div>
         
-        <div class="min-h-screen relative">
-            @include('layouts.navigation')
+        <div class="min-h-screen relative flex">
+            <!-- Sidebar -->
+            <x-sidebar />
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="glass dark:glass-dark border-b border-gray-200/50 dark:border-gray-700/50 shadow-soft">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 animate-fade-in-up">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+            <!-- Main Content Area -->
+            <div class="flex-1 flex flex-col main-content-responsive">
+                <!-- Page Heading -->
+                @hasSection('header')
+                    <header class="glass dark:glass-dark border-b border-gray-200/50 dark:border-gray-700/50 shadow-soft relative z-10">
+                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 animate-fade-in-up">
+                            @yield('header')
+                        </div>
+                    </header>
+                @endif
 
-            <!-- Page Content -->
-            <main class="py-8 animate-fade-in-up" style="animation-delay: 0.1s;">
-                @yield('content')
-            </main>
+                <!-- Page Content -->
+                <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+                    @yield('content')
+                </main>
+        
+        <!-- Notification Component -->
+        <x-notification />
+            </div>
         </div>
         
         <!-- JavaScript for enhanced interactions -->

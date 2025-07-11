@@ -47,7 +47,11 @@ class ForumController extends Controller
      */
     public function show($id)
     {
-        $forum = Forum::with('posts.user')->findOrFail($id);
+        $forum = Forum::with(['posts' => function($query) {
+            $query->with('user')
+                  ->withCount('comments')
+                  ->orderBy('created_at', 'desc');
+        }])->findOrFail($id);
         return view('forums.show', compact('forum'));
     }
 

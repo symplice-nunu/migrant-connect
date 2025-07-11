@@ -10,6 +10,127 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+/* Sidebar specific styles */
+.sidebar-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.sidebar-link:hover::before {
+    left: 100%;
+}
+
+/* Sidebar scrollbar styling */
+.sidebar-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+    border-radius: 2px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.5);
+}
+
+.dark .sidebar-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(75, 85, 99, 0.3);
+}
+
+.dark .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(75, 85, 99, 0.5);
+}
+
+/* Responsive sidebar adjustments */
+/* Desktop (lg and above) - Sidebar visible by default */
+@media (min-width: 1024px) {
+    .sidebar-responsive {
+        width: 256px; /* w-64 = 16rem = 256px */
+        max-width: 256px;
+    }
+    
+    .main-content-responsive {
+        margin-left: 256px; /* Match sidebar width */
+        width: calc(100% - 256px);
+    }
+}
+
+/* Mobile/Tablet (below lg) - Sidebar hidden by default */
+@media (max-width: 1023px) {
+    .sidebar-responsive {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .main-content-responsive {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-responsive {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .main-content-responsive {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .sidebar-responsive {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .main-content-responsive {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Hamburger menu styles */
+.hamburger-btn {
+    transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+    transform: scale(1.05);
+}
+
+.hamburger-line {
+    transition: all 0.3s ease;
+}
+
+/* Mobile sidebar overlay */
+#sidebar-overlay {
+    backdrop-filter: blur(4px);
+}
+
+/* Ensure sidebar is above overlay */
+#sidebar {
+    z-index: 50;
+}
+
 /* Custom animations */
 @keyframes fadeInUp {
     from {
@@ -83,6 +204,35 @@ body {
     }
 }
 
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* Animation classes */
 .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out;
@@ -107,6 +257,14 @@ body {
 .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 15s ease infinite;
+}
+
+.animate-slide-in-right {
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+.animate-bounce-in {
+    animation: bounceIn 0.8s ease-out;
 }
 
 /* Glassmorphism effects */
@@ -164,6 +322,22 @@ body {
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
+.shadow-glow-blue {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}
+
+.shadow-glow-green {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+}
+
+.shadow-glow-purple {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.4);
+}
+
+.shadow-glow-orange {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+}
+
 /* Enhanced buttons */
 .btn-primary {
     @apply inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all duration-200;
@@ -201,10 +375,10 @@ body {
 }
 
 .nav-link-active {
-    @apply text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20;
+    @apply bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold;
 }
 
-/* Stats cards */
+/* Enhanced stat cards */
 .stat-card {
     @apply bg-white dark:bg-gray-800 rounded-2xl shadow-soft border border-gray-200/50 dark:border-gray-700/50 p-6 transition-all duration-300;
 }
@@ -217,23 +391,23 @@ body {
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Feature cards */
+/* Enhanced feature cards */
 .feature-card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-soft border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300;
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-soft border border-gray-200/50 dark:border-gray-700/50 p-6 transition-all duration-300;
 }
 
 .feature-card-hover {
-    @apply transform hover:-translate-y-2;
+    @apply transform hover:-translate-y-1;
 }
 
 .feature-card-hover:hover {
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Loading skeleton */
+/* Skeleton loading */
 .skeleton {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200px 100%;
+    background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
 }
 
@@ -256,7 +430,6 @@ body {
     background: #a8a8a8;
 }
 
-/* Dark mode scrollbar */
 .dark .custom-scrollbar::-webkit-scrollbar-track {
     background: #374151;
 }
@@ -269,7 +442,7 @@ body {
     background: #9ca3af;
 }
 
-/* Enhanced typography */
+/* Text gradients */
 .text-gradient {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
@@ -284,16 +457,110 @@ body {
     background-clip: text;
 }
 
-/* Responsive utilities */
+/* Responsive design */
 @media (max-width: 640px) {
     .container {
-        @apply px-4;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
-/* Print styles */
 @media print {
     .no-print {
         display: none !important;
     }
+}
+
+/* Additional dashboard enhancements */
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Glow effects */
+.glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+.glow-purple {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+}
+
+.glow-orange {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+/* Backdrop blur effects */
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-md {
+    backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+}
+
+/* Enhanced borders */
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+}
+
+/* Pulse animations for status indicators */
+.status-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Floating animation for decorative elements */
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-delay-1 {
+    animation-delay: -1s;
+}
+
+.floating-delay-2 {
+    animation-delay: -2s;
+}
+
+/* Enhanced focus states */
+.focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventParticipant extends Model
 {
+    protected $fillable = [
+        'event_id',
+        'user_id',
+    ];
+
     public function event()
     {
         return $this->belongsTo(Event::class);
