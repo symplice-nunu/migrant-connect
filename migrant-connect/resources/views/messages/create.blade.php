@@ -142,7 +142,8 @@
                 @endif
                 <div class="grid grid-cols-1 gap-3">
                     @foreach($users->take(8) as $user)
-                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
+                             onclick="showUserProfile({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->location ?? 'No location' }}', '{{ $user->created_at->format('M Y') }}')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                                     <span class="text-white font-semibold">
@@ -175,7 +176,7 @@
                                     </div>
                                 </div>
                                 <button type="button" 
-                                        onclick="selectUser({{ $user->id }}, '{{ $user->name }}')"
+                                        onclick="event.stopPropagation(); selectUser({{ $user->id }}, '{{ $user->name }}')"
                                         class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm rounded-lg transition-colors">
                                     Message
                                 </button>
@@ -213,7 +214,8 @@
                             <h3 class="text-lg font-medium text-gray-900 mb-4">Available Users</h3>
                             <div class="grid grid-cols-1 gap-3">
                                 @foreach($availableUsers as $user)
-                                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+                                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
+                                         onclick="showUserProfile({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->location ?? 'No location' }}', '{{ $user->created_at->format('M Y') }}')">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                                                 <span class="text-white font-semibold">
@@ -246,7 +248,7 @@
                                                 </div>
                                             </div>
                                             <button type="button" 
-                                                    onclick="selectUser({{ $user->id }}, '{{ $user->name }}')"
+                                                    onclick="event.stopPropagation(); selectUser({{ $user->id }}, '{{ $user->name }}')"
                                                     class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm rounded-lg transition-colors">
                                                 Message
                                             </button>
@@ -278,6 +280,8 @@ function selectUser(userId, userName) {
     document.getElementById('receiver_id').value = userId;
     document.getElementById('content').focus();
 }
+
+
 
 // Search functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -314,5 +318,96 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+</script>
+
+<!-- User Profile Modal -->
+<x-modal name="user-profile-modal" :show="false" maxWidth="md">
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-medium text-gray-900">User Profile</h3>
+            <button type="button" 
+                    onclick="window.dispatchEvent(new CustomEvent('close-modal', { detail: 'user-profile-modal' }))"
+                    class="text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
+        <div class="flex items-center space-x-4 mb-6">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
+                <span id="profile-user-avatar" class="text-white text-xl font-bold"></span>
+            </div>
+            <div>
+                <h4 id="profile-user-name" class="text-xl font-semibold text-gray-900"></h4>
+                <p id="profile-user-email" class="text-gray-600"></p>
+            </div>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Location</p>
+                    <p id="profile-user-location" class="text-sm text-gray-900"></p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Joined</p>
+                    <p id="profile-user-joined" class="text-sm text-gray-900"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-6 flex justify-end space-x-3">
+            <button type="button" 
+                    onclick="window.dispatchEvent(new CustomEvent('close-modal', { detail: 'user-profile-modal' }))"
+                    class="px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-lg font-medium transition-colors">
+                Close
+            </button>
+            <button type="button" 
+                    onclick="selectUserFromProfile()"
+                    class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors">
+                Send Message
+            </button>
+        </div>
+    </div>
+</x-modal>
+
+<script>
+function selectUserFromProfile() {
+    // Get the user ID from the modal (we'll need to store it when opening the modal)
+    const userId = window.currentProfileUserId;
+    const userName = document.getElementById('profile-user-name').textContent;
+    
+    // Select the user in the dropdown
+    selectUser(userId, userName);
+    
+    // Close the modal
+    window.dispatchEvent(new CustomEvent('close-modal', { detail: 'user-profile-modal' }));
+}
+
+// Update the showUserProfile function to store the user ID
+function showUserProfile(userId, userName, userEmail, userLocation, userJoined) {
+    // Store the user ID for the "Send Message" button
+    window.currentProfileUserId = userId;
+    
+    // Update modal content
+    document.getElementById('profile-user-name').textContent = userName;
+    document.getElementById('profile-user-email').textContent = userEmail;
+    document.getElementById('profile-user-location').textContent = userLocation;
+    document.getElementById('profile-user-joined').textContent = userJoined;
+    document.getElementById('profile-user-avatar').textContent = userName.charAt(0).toUpperCase();
+    
+    // Show the modal
+    window.dispatchEvent(new CustomEvent('open-modal', { detail: 'user-profile-modal' }));
+}
 </script>
 @endsection 
