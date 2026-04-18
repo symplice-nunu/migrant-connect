@@ -1,163 +1,145 @@
-<nav x-data="{ open: false }" class="glass dark:glass-dark border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50 shadow-soft">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-200  sticky top-0 z-50 shadow-sm">
+    <div class=" mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 group animate-fade-in-left">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300 group-hover:scale-110">
-                            <i class="fas fa-globe-americas text-white text-xl"></i>
+                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2.5 group">
+                        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center group-hover:bg-indigo-700 transition-colors duration-150">
+                            <i class="fas fa-globe-americas text-white text-sm"></i>
                         </div>
-                        <span class="text-2xl font-bold text-gradient">Migrant Connect</span>
+                        <span class="text-base font-bold text-gray-900 ">Migrant Connect</span>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="nav-link-enhanced">
-                        <i class="fas fa-tachometer-alt text-lg"></i>
-                        <span class="font-medium">{{ __('Dashboard') }}</span>
+                <div class="hidden space-x-1 sm:ms-8 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <i class="fas fa-home text-sm mr-1.5"></i>
+                        {{ __('Dashboard') }}
                     </x-nav-link>
-                    
-                    <x-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.*')" class="nav-link-enhanced">
-                        <i class="fas fa-calendar-alt text-lg"></i>
-                        <span class="font-medium">Events</span>
+
+                    <x-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.*')">
+                        <i class="fas fa-calendar-alt text-sm mr-1.5"></i>
+                        Events
                     </x-nav-link>
-                    
-                    <x-nav-link href="{{ route('forums.index') }}" :active="request()->routeIs('forums.*')" class="nav-link-enhanced">
-                        <i class="fas fa-comments text-lg"></i>
-                        <span class="font-medium">Forums</span>
+
+                    <x-nav-link href="{{ route('forums.index') }}" :active="request()->routeIs('forums.*')">
+                        <i class="fas fa-comments text-sm mr-1.5"></i>
+                        Forums
                     </x-nav-link>
-                    
-                    <x-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="nav-link-enhanced relative">
-                        <i class="fas fa-comments text-lg"></i>
-                        <span class="font-medium">Chats</span>
+
+                    <x-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="relative">
+                        <i class="fas fa-envelope text-sm mr-1.5"></i>
+                        Chats
                         @if(isset($unreadMessageCount) && $unreadMessageCount > 0)
-                            <span class="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" data-unread-count>
+                            <span class="ml-1.5 bg-indigo-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center" data-unread-count>
                                 {{ $unreadMessageCount > 99 ? '99+' : $unreadMessageCount }}
                             </span>
                         @else
-                            <span class="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden" data-unread-count>0</span>
+                            <span class="ml-1.5 bg-indigo-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center hidden" data-unread-count>0</span>
                         @endif
                     </x-nav-link>
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- User Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-4 font-medium rounded-xl text-gray-700 dark:text-gray-300 glass dark:glass-dark hover:shadow-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 transition-all duration-200">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-                                    <span class="text-white text-sm font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
-                                </div>
-                                <span class="font-medium">{{ Auth::user()->name }}</span>
+                        <button class="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 :bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 :ring-offset-gray-800 transition-colors duration-150">
+                            <div class="w-7 h-7 bg-indigo-100 rounded-full flex items-center justify-center">
+                                <span class="text-indigo-700 text-xs font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
                             </div>
-
-                            <div class="ms-2">
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </div>
+                            <span>{{ Auth::user()->name }}</span>
+                            <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
                         </button>
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')" class="flex items-center space-x-3 hover:bg-blue-50 dark:hover:bg-blue-900/20">
-                            <i class="fas fa-user-circle text-blue-600"></i>
-                            <span class="font-medium">{{ __('Profile') }}</span>
+                        <x-dropdown-link :href="route('profile.edit')" class="flex items-center space-x-2">
+                            <i class="fas fa-user-circle text-gray-400 text-sm"></i>
+                            <span>{{ __('Profile') }}</span>
                         </x-dropdown-link>
 
-                        <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();"
-                                    class="flex items-center space-x-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span class="font-medium">{{ __('Log Out') }}</span>
+                                    onclick="event.preventDefault(); this.closest('form').submit();"
+                                    class="flex items-center space-x-2 text-red-600 ">
+                                <i class="fas fa-sign-out-alt text-sm"></i>
+                                <span>{{ __('Log Out') }}</span>
                             </x-dropdown-link>
                         </form>
                     </x-slot>
                 </x-dropdown>
             </div>
 
-            <!-- Hamburger -->
+            <!-- Mobile Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-xl text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition-all duration-200">
-                    <i class="fas fa-bars h-6 w-6" x-show="!open"></i>
-                    <i class="fas fa-times h-6 w-6" x-show="open"></i>
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-lg text-gray-500 hover:bg-gray-100 :bg-gray-700 focus:outline-none transition-colors duration-150">
+                    <i class="fas fa-bars" x-show="!open"></i>
+                    <i class="fas fa-times" x-show="open"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden glass dark:glass-dark border-t border-gray-200/50 dark:border-gray-700/50">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2">
-                <i class="fas fa-tachometer-alt text-lg"></i>
-                <span class="font-medium">{{ __('Dashboard') }}</span>
+    <!-- Mobile Menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-white border-t border-gray-200 ">
+        <div class="pt-2 pb-3 space-y-0.5 px-3">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="flex items-center space-x-2 px-3 py-2.5 rounded-lg">
+                <i class="fas fa-home text-sm text-gray-400"></i>
+                <span>{{ __('Dashboard') }}</span>
             </x-responsive-nav-link>
-            
-            <x-responsive-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.*')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2">
-                <i class="fas fa-calendar-alt text-lg"></i>
-                <span class="font-medium">Events</span>
+
+            <x-responsive-nav-link href="{{ route('events.index') }}" :active="request()->routeIs('events.*')" class="flex items-center space-x-2 px-3 py-2.5 rounded-lg">
+                <i class="fas fa-calendar-alt text-sm text-gray-400"></i>
+                <span>Events</span>
             </x-responsive-nav-link>
-            
-            <x-responsive-nav-link href="{{ route('forums.index') }}" :active="request()->routeIs('forums.*')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2">
-                <i class="fas fa-comments text-lg"></i>
-                <span class="font-medium">Forums</span>
+
+            <x-responsive-nav-link href="{{ route('forums.index') }}" :active="request()->routeIs('forums.*')" class="flex items-center space-x-2 px-3 py-2.5 rounded-lg">
+                <i class="fas fa-comments text-sm text-gray-400"></i>
+                <span>Forums</span>
             </x-responsive-nav-link>
-            
-            <x-responsive-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2 relative">
-                <i class="fas fa-comments text-lg"></i>
-                <span class="font-medium">Chats</span>
+
+            <x-responsive-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.*')" class="flex items-center space-x-2 px-3 py-2.5 rounded-lg">
+                <i class="fas fa-envelope text-sm text-gray-400"></i>
+                <span>Chats</span>
                 @if(isset($unreadMessageCount) && $unreadMessageCount > 0)
-                    <span class="absolute top-2 right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" data-unread-count>
+                    <span class="ml-auto bg-indigo-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center" data-unread-count>
                         {{ $unreadMessageCount > 99 ? '99+' : $unreadMessageCount }}
                     </span>
-                @else
-                    <span class="absolute top-2 right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden" data-unread-count>0</span>
                 @endif
             </x-responsive-nav-link>
         </div>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div class="px-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-                        <span class="text-white text-sm font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
-                    </div>
-                    <div>
-                        <div class="font-semibold text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                    </div>
+        <!-- Mobile User Section -->
+        <div class="pt-3 pb-2 border-t border-gray-200 px-3">
+            <div class="flex items-center space-x-3 px-3 py-2 mb-1">
+                <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                    <span class="text-indigo-700 text-xs font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                </div>
+                <div>
+                    <div class="text-sm font-semibold text-gray-900 ">{{ Auth::user()->name }}</div>
+                    <div class="text-xs text-gray-500 ">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')" class="flex items-center space-x-3 px-4 py-3 rounded-xl mx-2">
-                    <i class="fas fa-user-circle text-blue-600"></i>
-                    <span class="font-medium">{{ __('Profile') }}</span>
+            <x-responsive-nav-link :href="route('profile.edit')" class="flex items-center space-x-2 px-3 py-2.5 rounded-lg">
+                <i class="fas fa-user-circle text-sm text-gray-400"></i>
+                <span>{{ __('Profile') }}</span>
+            </x-responsive-nav-link>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-responsive-nav-link :href="route('logout')"
+                        onclick="event.preventDefault(); this.closest('form').submit();"
+                        class="flex items-center space-x-2 px-3 py-2.5 rounded-lg text-red-600 ">
+                    <i class="fas fa-sign-out-alt text-sm"></i>
+                    <span>{{ __('Log Out') }}</span>
                 </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();"
-                            class="flex items-center space-x-3 text-red-600 dark:text-red-400 px-4 py-3 rounded-xl mx-2">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span class="font-medium">{{ __('Log Out') }}</span>
-                    </x-responsive-nav-link>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </nav>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Event Header Section -->
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
         <!-- Event Hero Image -->
         <div class="h-48 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 relative overflow-hidden">
             <div class="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -26,45 +26,45 @@
                 <!-- Left Column -->
                 <div class="space-y-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Event Details</h2>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Event Details</h2>
                         <div class="space-y-4">
                             <div class="flex items-start space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400"></i>
+                                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-blue-600 "></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Location</h3>
-                                    <p class="text-gray-600 dark:text-gray-300">{{ $event->location }}</p>
+                                    <h3 class="font-semibold text-gray-900 ">Location</h3>
+                                    <p class="text-gray-600 ">{{ $event->location }}</p>
                                 </div>
                             </div>
 
                             <div class="flex items-start space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-calendar text-green-600 dark:text-green-400"></i>
+                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-calendar text-green-600 "></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Date</h3>
-                                    <p class="text-gray-600 dark:text-gray-300">{{ \Carbon\Carbon::parse($event->date)->format('l, F j, Y') }}</p>
+                                    <h3 class="font-semibold text-gray-900 ">Date</h3>
+                                    <p class="text-gray-600 ">{{ \Carbon\Carbon::parse($event->date)->format('l, F j, Y') }}</p>
                                 </div>
                             </div>
 
                             <div class="flex items-start space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-clock text-purple-600 dark:text-purple-400"></i>
+                                <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-clock text-purple-600 "></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Time</h3>
-                                    <p class="text-gray-600 dark:text-gray-300">{{ \Carbon\Carbon::parse($event->time)->format('g:i A') }}</p>
+                                    <h3 class="font-semibold text-gray-900 ">Time</h3>
+                                    <p class="text-gray-600 ">{{ \Carbon\Carbon::parse($event->time)->format('g:i A') }}</p>
                                 </div>
                             </div>
 
                             <div class="flex items-start space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-user text-orange-600 dark:text-orange-400"></i>
+                                <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-user text-orange-600 "></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Organizer</h3>
-                                    <p class="text-gray-600 dark:text-gray-300">{{ $event->creator->name ?? 'Unknown' }}</p>
+                                    <h3 class="font-semibold text-gray-900 ">Organizer</h3>
+                                    <p class="text-gray-600 ">{{ $event->creator->name ?? 'Unknown' }}</p>
                                 </div>
                             </div>
                         </div>
@@ -74,9 +74,9 @@
                 <!-- Right Column -->
                 <div class="space-y-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Description</h2>
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
-                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ $event->description }}</p>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Description</h2>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <p class="text-gray-700 leading-relaxed">{{ $event->description }}</p>
                         </div>
                     </div>
 
@@ -123,14 +123,14 @@
     </div>
 
     <!-- Participants Section -->
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
         <div class="p-8">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center">
                     <i class="fas fa-users mr-3 text-blue-500"></i>
                     Participants ({{ $event->participants->count() }})
                 </h2>
-                <div class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full text-sm font-medium">
+                <div class="bg-blue-100 text-blue-800  px-4 py-2 rounded-full text-sm font-medium">
                     {{ $event->participants->count() }} {{ Str::plural('person', $event->participants->count()) }}
                 </div>
             </div>
@@ -138,16 +138,16 @@
             @if($event->participants->count() > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach ($event->participants as $participant)
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200">
+                        <div class="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 :bg-gray-600 transition-colors duration-200">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
                                     {{ substr($participant->user->name ?? 'U', 0, 1) }}
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                    <p class="text-sm font-medium text-gray-900 truncate">
                                         {{ $participant->user->name ?? 'Unknown User' }}
                                     </p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                    <p class="text-xs text-gray-500 truncate">
                                         {{ $participant->user->email ?? 'No email' }}
                                     </p>
                                 </div>
@@ -157,11 +157,11 @@
                 </div>
             @else
                 <div class="text-center py-12">
-                    <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-users text-gray-400 text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No participants yet</h3>
-                    <p class="text-gray-500 dark:text-gray-400">Be the first to join this event!</p>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">No participants yet</h3>
+                    <p class="text-gray-500 ">Be the first to join this event!</p>
                 </div>
             @endif
         </div>
@@ -169,7 +169,7 @@
 
     <!-- Back to Events Link -->
     <div class="mt-8 text-center">
-        <a href="{{ route('events.index') }}" class="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors duration-200">
+        <a href="{{ route('events.index') }}" class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 :text-blue-300 font-medium transition-colors duration-200">
             <i class="fas fa-arrow-left"></i>
             <span>Back to Events</span>
         </a>

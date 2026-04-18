@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class=" mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Forum Header Section -->
     <div class="mb-8 animate-fade-in-up">
-        <div class="glass rounded-2xl p-8 shadow-soft border border-gray-200/50 dark:border-gray-700/50">
+        <div class="glass rounded-2xl p-8 shadow-soft border border-gray-200/50 ">
             <div class="flex items-start justify-between mb-6">
                 <div class="flex-1">
                     <div class="flex items-center gap-3 mb-4">
@@ -12,8 +12,8 @@
                             <i class="fas fa-comments text-white text-xl"></i>
                         </div>
                         <div>
-                            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{{ $forum->title }}</h1>
-                            <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                            <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $forum->title }}</h1>
+                            <div class="flex items-center gap-4 text-sm text-gray-600 ">
                                 <span class="flex items-center gap-1">
                                     <i class="fas fa-calendar-alt"></i>
                                     Created {{ $forum->created_at->diffForHumans() }}
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">{{ $forum->description }}</p>
+                    <p class="text-gray-700 text-lg leading-relaxed">{{ $forum->description }}</p>
                 </div>
             </div>
             
@@ -65,11 +65,11 @@
     <!-- Posts Section -->
     <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-3">
                 <i class="fas fa-list-ul text-blue-500"></i>
                 Forum Posts
             </h2>
-            <div class="text-sm text-gray-600 dark:text-gray-400">
+            <div class="text-sm text-gray-600 ">
                 Showing {{ $forum->posts->count() }} posts
             </div>
         </div>
@@ -77,7 +77,7 @@
         @if($forum->posts->count() > 0)
             <div class="grid gap-6">
                 @foreach ($forum->posts as $post)
-                    <div class="card card-hover post-card p-6 border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-soft animate-fade-in-up">
+                    <div class="card card-hover post-card p-6 border border-gray-200/50 rounded-2xl shadow-soft animate-fade-in-up">
                         <div class="flex items-start gap-4">
                             <!-- User Avatar -->
                             <div class="flex-shrink-0">
@@ -91,25 +91,25 @@
                             <!-- Post Content -->
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                    <h3 class="text-lg font-semibold text-gray-900 ">
                                         <a href="{{ route('posts.show', $post->id) }}" 
-                                           class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+                                           class="hover:text-blue-600 :text-blue-400 transition-colors duration-200">
                                             {{ Str::limit($post->content, 60) }}
                                         </a>
                                     </h3>
                                     @if($post->created_at->diffInHours(now()) < 24)
-                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 new-badge">
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full new-badge">
                                             New
                                         </span>
                                     @endif
                                 </div>
                                 
-                                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                                <p class="text-gray-600 mb-4 leading-relaxed">
                                     {{ Str::limit($post->content, 150) }}
                                 </p>
                                 
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                                    <div class="flex items-center gap-4 text-sm text-gray-500 ">
                                         <span class="flex items-center gap-1">
                                             <i class="fas fa-user"></i>
                                             {{ $post->user->name ?? 'Anonymous User' }}
@@ -127,7 +127,7 @@
                                     </div>
                                     
                                     <a href="{{ route('posts.show', $post->id) }}" 
-                                       class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm flex items-center gap-1 transition-colors duration-200">
+                                       class="text-blue-600 hover:text-blue-700 :text-blue-300 font-medium text-sm flex items-center gap-1 transition-colors duration-200">
                                         Read More
                                         <i class="fas fa-arrow-right text-xs"></i>
                                     </a>
@@ -140,11 +140,11 @@
         @else
             <!-- Empty State -->
             <div class="text-center py-12 animate-fade-in-up">
-                <div class="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i class="fas fa-comment-slash text-3xl text-gray-400"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">No posts yet</h3>
-                <p class="text-gray-600 dark:text-gray-400 mb-6">Be the first to start a conversation in this forum!</p>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">No posts yet</h3>
+                <p class="text-gray-600 mb-6">Be the first to start a conversation in this forum!</p>
                 <a href="{{ route('posts.create', ['forum_id' => $forum->id]) }}" 
                    class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold">
                     <i class="fas fa-plus"></i>
@@ -158,36 +158,36 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 animate-fade-in-up" style="animation-delay: 0.4s;">
         <div class="stat-card stat-card-hover p-6 rounded-2xl">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center">
-                    <i class="fas fa-comments text-blue-600 dark:text-blue-400 text-xl"></i>
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-comments text-blue-600 text-xl"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Posts</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $forum->posts->count() }}</p>
+                    <p class="text-sm font-medium text-gray-600 ">Total Posts</p>
+                    <p class="text-2xl font-bold text-gray-900 ">{{ $forum->posts->count() }}</p>
                 </div>
             </div>
         </div>
         
         <div class="stat-card stat-card-hover p-6 rounded-2xl">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-xl flex items-center justify-center">
-                    <i class="fas fa-users text-green-600 dark:text-green-400 text-xl"></i>
+                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-users text-green-600 text-xl"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Participants</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $forum->posts->unique('user_id')->count() }}</p>
+                    <p class="text-sm font-medium text-gray-600 ">Participants</p>
+                    <p class="text-2xl font-bold text-gray-900 ">{{ $forum->posts->unique('user_id')->count() }}</p>
                 </div>
             </div>
         </div>
         
         <div class="stat-card stat-card-hover p-6 rounded-2xl">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-xl flex items-center justify-center">
-                    <i class="fas fa-clock text-purple-600 dark:text-purple-400 text-xl"></i>
+                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-clock text-purple-600 text-xl"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Last Activity</p>
-                    <p class="text-lg font-semibold text-gray-900 dark:text-white">
+                    <p class="text-sm font-medium text-gray-600 ">Last Activity</p>
+                    <p class="text-lg font-semibold text-gray-900 ">
                         @php
                             $latestPost = $forum->posts->sortByDesc('created_at')->first();
                         @endphp
@@ -298,16 +298,11 @@
     .post-card:nth-child(4) { animation-delay: 0.4s; }
     .post-card:nth-child(5) { animation-delay: 0.5s; }
     
-    /* Enhanced glassmorphism */
+    /* Glassmorphism */
     .glass {
         backdrop-filter: blur(20px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .dark .glass {
-        background: rgba(17, 24, 39, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.4);
     }
     
     /* Smooth scrolling for the page */
