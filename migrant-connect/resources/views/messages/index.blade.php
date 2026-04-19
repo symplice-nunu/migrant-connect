@@ -3,17 +3,17 @@
 @section('content')
 <div class="h-screen flex flex-col bg-gray-100">
     <!-- Header -->
-    <div class="bg-green-500 px-4 py-3">
+    <div class="bg-teal-500 px-4 py-3">
         <div class="flex items-center justify-between">
             <h1 class="text-xl font-bold text-white">Chats</h1>
             <div class="flex items-center space-x-3">
-                <button class="p-2 text-white hover:bg-green-600 rounded-full">
+                <button class="p-2 text-white hover:bg-teal-600 rounded-full">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </button>
                 <a href="{{ route('messages.create') }}" 
-                   class="p-2 text-white hover:bg-green-600 rounded-full">
+                   class="p-2 text-white hover:bg-teal-600 rounded-full">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
@@ -32,7 +32,7 @@
             </div>
             <input type="text" 
                    placeholder="Search or start new chat" 
-                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500">
+                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500">
         </div>
     </div>
 
@@ -45,10 +45,14 @@
                     <div class="flex items-center px-4 py-3 border-b border-gray-100">
                         <!-- Avatar -->
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                                <span class="text-white font-semibold text-lg">
-                                    {{ substr($conversation['user']->name, 0, 1) }}
-                                </span>
+                            <div class="w-12 h-12 rounded-full overflow-hidden">
+                                @if($conversation['user']->avatar)
+                                    <img src="{{ Storage::url($conversation['user']->avatar) }}" alt="{{ $conversation['user']->name }}" class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full bg-teal-500 flex items-center justify-center">
+                                        <span class="text-white font-semibold text-lg">{{ substr($conversation['user']->name, 0, 1) }}</span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         
@@ -71,7 +75,7 @@
                                 </p>
                                 @if($conversation['unreadCount'] > 0)
                                     <div class="flex-shrink-0 ml-2">
-                                        <span class="bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                        <span class="bg-teal-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                                             {{ $conversation['unreadCount'] > 99 ? '99+' : $conversation['unreadCount'] }}
                                         </span>
                                     </div>
@@ -91,7 +95,7 @@
                 <h3 class="text-lg font-medium text-gray-900 mb-2">No conversations yet</h3>
                 <p class="text-gray-500 mb-6">Start a conversation by sending a message to someone.</p>
                 <a href="{{ route('messages.create') }}" 
-                   class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors">
+                   class="inline-flex items-center px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>

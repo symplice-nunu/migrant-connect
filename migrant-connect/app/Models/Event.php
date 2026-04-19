@@ -13,6 +13,7 @@ class Event extends Model
         'location',
         'date',
         'time',
+        'image',
     ];
 
     public function creator()

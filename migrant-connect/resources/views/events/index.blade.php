@@ -6,7 +6,7 @@
         <div class="flex flex-wrap gap-4 items-center justify-between">
             <div>
                 <h1 class="text-4xl font-bold text-gray-900 mb-2">
-                    <span class="text-gradient">Events</span>
+                    Events
                 </h1>
                 <p class="text-xl text-gray-600 ">Discover and join amazing community events</p>
             </div>
@@ -21,18 +21,21 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($events as $event)
         <div class="card card-hover animate-fade-in-up" style="animation-delay: {{ $loop->index * 0.1 }}s;">
-            <!-- Event Image Placeholder -->
-            <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 relative overflow-hidden">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <i class="fas fa-calendar-alt text-white/80 text-4xl"></i>
-                </div>
+            <!-- Event Image -->
+            <div class="h-48 bg-teal-600 relative overflow-hidden">
+                @if($event->image)
+                    <img src="{{ Storage::url($event->image) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                @else
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-calendar-alt text-white/80 text-4xl"></i>
+                    </div>
+                @endif
                 <!-- Event Date Badge -->
-                <div class="absolute top-4 right-4 glass rounded-2xl px-4 py-2 shadow-lg">
-                    <p class="text-sm font-bold text-gray-900 ">{{ \Carbon\Carbon::parse($event->date)->format('M j') }}</p>
-                    <p class="text-xs text-gray-600 ">{{ \Carbon\Carbon::parse($event->date)->format('Y') }}</p>
+                <div class="absolute top-4 right-4 bg-white rounded-2xl px-4 py-2 shadow-lg">
+                    <p class="text-sm font-bold text-gray-900">{{ \Carbon\Carbon::parse($event->date)->format('M j') }}</p>
+                    <p class="text-xs text-gray-600">{{ \Carbon\Carbon::parse($event->date)->format('Y') }}</p>
                 </div>
-                <!-- Gradient Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
 
             <!-- Event Content -->
@@ -78,7 +81,7 @@
         <!-- Empty State -->
         <div class="col-span-full">
             <div class="text-center py-16">
-                <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg animate-pulse-slow">
+                <div class="w-32 h-32 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
                     <i class="fas fa-calendar-plus text-white text-4xl"></i>
                 </div>
                 <h3 class="text-3xl font-bold text-gray-900 mb-4">No events yet</h3>

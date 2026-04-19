@@ -2,13 +2,39 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Event;
+use App\Models\Forum;
+use App\Models\Post;
+use App\Models\User;
 
 Route::get('/', function () {
-    return view('welcome');
+    $totalMembers = User::count();
+    $totalEvents  = Event::count();
+    $totalForums  = Forum::count();
+    $totalPosts   = Post::count();
+    return view('welcome', compact('totalMembers', 'totalEvents', 'totalForums', 'totalPosts'));
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $totalEvents   = Event::count();
+    $totalForums   = Forum::count();
+    $totalMembers  = User::count();
+    $totalPosts    = Post::count();
+
+    $upcomingEvents = Event::where('date', '>=', now()->toDateString())
+        ->orderBy('date')
+        ->orderBy('time')
+        ->take(3)
+        ->get();
+
+    $recentEvents = Event::orderBy('created_at', 'desc')->take(3)->get();
+    $recentForums = Forum::orderBy('created_at', 'desc')->take(3)->get();
+    $recentMembers = User::orderBy('created_at', 'desc')->take(3)->get();
+
+    return view('dashboard', compact(
+        'totalEvents', 'totalForums', 'totalMembers', 'totalPosts',
+        'upcomingEvents', 'recentEvents', 'recentForums', 'recentMembers'
+    ));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Debug route to test profile

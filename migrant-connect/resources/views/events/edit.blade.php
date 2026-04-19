@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
             <!-- Header Section -->
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-600 rounded-full mb-4">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
@@ -12,17 +12,17 @@
                 <h1 class="text-3xl font-bold text-gray-900 mb-2">Edit Event</h1>
                 <p class="text-gray-600">Update your event details</p>
             </div>
-            
+
             <!-- Form Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-4">
+                <div class="bg-teal-600 px-6 py-4">
                     <h2 class="text-white font-semibold text-lg">Event Details</h2>
                 </div>
-                
-                <form method="POST" action="{{ route('events.update', $event->id) }}" class="p-8 space-y-6">
+
+                <form method="POST" action="{{ route('events.update', $event->id) }}" class="p-8 space-y-6" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    
+
                     <!-- Title Field -->
                     <div class="space-y-2">
                         <label for="title" class="block text-sm font-semibold text-gray-700 flex items-center">
@@ -43,7 +43,7 @@
                             </p>
                         @enderror
                     </div>
-                    
+
                     <!-- Description Field -->
                     <div class="space-y-2">
                         <label for="description" class="block text-sm font-semibold text-gray-700 flex items-center">
@@ -63,7 +63,7 @@
                             </p>
                         @enderror
                     </div>
-                    
+
                     <!-- Location and Date/Time Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Location Field -->
@@ -87,7 +87,7 @@
                                 </p>
                             @enderror
                         </div>
-                        
+
                         <!-- Date Field with Datepicker -->
                         <div class="space-y-2">
                             <label for="date" class="block text-sm font-semibold text-gray-700 flex items-center">
@@ -116,7 +116,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <!-- Time Field -->
                     <div class="space-y-2">
                         <label for="time" class="block text-sm font-semibold text-gray-700 flex items-center">
@@ -136,18 +136,61 @@
                             </p>
                         @enderror
                     </div>
-                    
+
+                    <!-- Event Image Field -->
+                    <div class="space-y-2">
+                        <label for="image" class="block text-sm font-semibold text-gray-700 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            Event Image <span class="text-gray-400 font-normal ml-1">(optional)</span>
+                        </label>
+                        <div class="relative">
+                            @if($event->image)
+                                <div id="image-preview" class="mb-3">
+                                    <img id="preview-img" src="{{ Storage::url($event->image) }}" alt="Current image" class="w-full max-h-48 object-cover rounded-lg border border-gray-200">
+                                </div>
+                            @else
+                                <div id="image-preview" class="hidden mb-3">
+                                    <img id="preview-img" src="" alt="Preview" class="w-full max-h-48 object-cover rounded-lg border border-gray-200">
+                                </div>
+                            @endif
+                            <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6" id="upload-placeholder">
+                                    <svg class="w-8 h-8 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    @if($event->image)
+                                        <p class="text-sm text-teal-600 font-medium">Click to replace image</p>
+                                    @else
+                                        <p class="text-sm text-gray-500">Click to upload event image</p>
+                                    @endif
+                                    <p class="text-xs text-gray-400 mt-1">JPG, PNG, GIF, WEBP up to 4MB</p>
+                                </div>
+                                <input type="file" name="image" id="image" accept="image/*" class="hidden" onchange="previewEventImage(this)">
+                            </label>
+                        </div>
+                        @error('image')
+                            <p class="text-sm text-red-500 flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
                     <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-gray-100">
-                        <a href="{{ route('events.show', $event->id) }}" 
+                        <a href="{{ route('events.show', $event->id) }}"
                            class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 font-medium">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                             Cancel
                         </a>
-                        <button type="submit" 
-                                class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        <button type="submit"
+                                class="inline-flex items-center justify-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
@@ -160,11 +203,25 @@
     </div>
 
     <script>
+        function previewEventImage(input) {
+            const preview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            const placeholder = document.getElementById('upload-placeholder');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    placeholder.innerHTML = '<p class="text-sm text-teal-600 font-medium">Image selected — click to change</p><p class="text-xs text-gray-400 mt-1">JPG, PNG, GIF, WEBP up to 4MB</p>';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Flatpickr datepicker
             flatpickr("#date", {
                 dateFormat: "Y-m-d",
-                minDate: "today",
                 disableMobile: true,
                 allowInput: true,
                 clickOpens: true,
@@ -172,7 +229,6 @@
                     firstDayOfWeek: 1
                 },
                 onChange: function(selectedDates, dateStr, instance) {
-                    // Add visual feedback
                     const input = instance.input;
                     input.classList.add('ring-2', 'ring-orange-500');
                     setTimeout(() => {
@@ -182,4 +238,4 @@
             });
         });
     </script>
-@endsection 
+@endsection

@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-bold">Posts</h1>
             <a href="{{ route('posts.create', ['forum_id' => $forum->id]) }}" 
-               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+               class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">
                 Create Post
             </a>
         </div>
@@ -14,25 +14,36 @@
                 @foreach ($posts as $post)
                     <div class="bg-white shadow rounded-lg p-6">
                         <div class="flex justify-between items-start">
-                            <div class="flex-1">
+                            <div class="flex-1 flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                                    @if($post->user?->avatar)
+                                        <img src="{{ Storage::url($post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-teal-600 flex items-center justify-center">
+                                            <span class="text-white font-semibold">{{ strtoupper(substr($post->user->name ?? 'U', 0, 1)) }}</span>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="flex-1">
                                 <h3 class="text-lg font-semibold mb-2">
-                                    <a href="{{ route('posts.show', $post->id) }}" class="text-blue-600 hover:text-blue-800">
+                                    <a href="{{ route('posts.show', $post->id) }}" class="text-teal-600 hover:text-teal-800">
                                         {{ Str::limit($post->content, 100) }}
                                     </a>
                                 </h3>
                                 <p class="text-gray-600 text-sm">
-                                    By User #{{ $post->user_id }} • {{ $post->created_at->diffForHumans() }}
+                                    By {{ $post->user->name ?? 'Anonymous' }} • {{ $post->created_at->diffForHumans() }}
                                 </p>
                                 @if($post->comments->count() > 0)
                                     <p class="text-gray-500 text-sm mt-1">
                                         {{ $post->comments->count() }} comment{{ $post->comments->count() !== 1 ? 's' : '' }}
                                     </p>
                                 @endif
+                                </div>
                             </div>
                             @if($post->user_id == auth()->id())
                                 <div class="flex space-x-2">
                                     <a href="{{ route('posts.edit', $post->id) }}" 
-                                       class="text-blue-600 hover:text-blue-800 text-sm">Edit</a>
+                                       class="text-teal-600 hover:text-teal-800 text-sm">Edit</a>
                                     <form method="POST" action="{{ route('posts.destroy', $post->id) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
@@ -57,7 +68,7 @@
         
         <div class="mt-6">
             <a href="{{ route('forums.show', $forum) }}" 
-               class="text-blue-600 hover:text-blue-800">
+               class="text-teal-600 hover:text-teal-800">
                 ← Back to Forum
             </a>
         </div>

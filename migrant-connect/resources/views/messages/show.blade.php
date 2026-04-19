@@ -10,10 +10,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
         </a>
-        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-            <span class="text-white font-semibold text-lg">
-                {{ substr($otherUser->name, 0, 1) }}
-            </span>
+        <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+            @if($otherUser->avatar)
+                <img src="{{ Storage::url($otherUser->avatar) }}" alt="{{ $otherUser->name }}" class="w-full h-full object-cover">
+            @else
+                <div class="w-full h-full bg-teal-500 flex items-center justify-center">
+                    <span class="text-white font-semibold text-lg">{{ substr($otherUser->name, 0, 1) }}</span>
+                </div>
+            @endif
         </div>
         <div class="flex-1">
             <h1 class="text-lg font-semibold text-gray-900">{{ $otherUser->name }}</h1>
@@ -42,10 +46,14 @@
                         @if($message->sender_id != auth()->id())
                             <!-- Received Message -->
                             <div class="flex items-end space-x-2">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-sm font-semibold">
-                                        {{ substr($otherUser->name, 0, 1) }}
-                                    </span>
+                                <div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                                    @if($otherUser->avatar)
+                                        <img src="{{ Storage::url($otherUser->avatar) }}" alt="{{ $otherUser->name }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-teal-500 flex items-center justify-center">
+                                            <span class="text-white text-sm font-semibold">{{ substr($otherUser->name, 0, 1) }}</span>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="bg-white rounded-lg rounded-bl-md px-4 py-2 shadow-sm">
                                     <p class="text-sm text-gray-900">{{ $message->content }}</p>
@@ -59,13 +67,13 @@
                         @else
                             <!-- Sent Message -->
                             <div class="flex items-end space-x-2">
-                                <div class="bg-green-500 rounded-lg rounded-br-md px-4 py-2 shadow-sm">
+                                <div class="bg-teal-500 rounded-lg rounded-br-md px-4 py-2 shadow-sm">
                                     <p class="text-sm text-white">{{ $message->content }}</p>
                                     <div class="flex items-center justify-between mt-1">
-                                        <span class="text-xs text-green-100">
+                                        <span class="text-xs text-teal-100">
                                             {{ $message->created_at->format('g:i A') }}
                                         </span>
-                                        <span class="text-xs text-green-100 ml-2">
+                                        <span class="text-xs text-teal-100 ml-2">
                                             @if($message->isRead())
                                                 ✓✓
                                             @else
@@ -74,10 +82,14 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-sm font-semibold">
-                                        {{ substr(auth()->user()->name, 0, 1) }}
-                                    </span>
+                                <div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                                    @if(auth()->user()->avatar)
+                                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-teal-500 flex items-center justify-center">
+                                            <span class="text-white text-sm font-semibold">{{ substr(auth()->user()->name, 0, 1) }}</span>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         @endif
@@ -99,10 +111,14 @@
     <!-- Typing Indicator -->
     <div id="typing-indicator" class="bg-white border-t border-gray-200 px-4 py-2 hidden">
         <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <span class="text-white text-sm font-semibold">
-                    {{ substr($otherUser->name, 0, 1) }}
-                </span>
+            <div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                @if($otherUser->avatar)
+                    <img src="{{ Storage::url($otherUser->avatar) }}" alt="{{ $otherUser->name }}" class="w-full h-full object-cover">
+                @else
+                    <div class="w-full h-full bg-teal-500 flex items-center justify-center">
+                        <span class="text-white text-sm font-semibold">{{ substr($otherUser->name, 0, 1) }}</span>
+                    </div>
+                @endif
             </div>
             <div class="flex space-x-1">
                 <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
@@ -130,9 +146,8 @@
             <div class="flex-1">
                 <textarea 
                     name="content" 
-                    required 
                     placeholder="Type a message..."
-                    class="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
                     rows="1"
                     id="message-input"
                 ></textarea>
@@ -140,7 +155,7 @@
             
             <!-- Send Button -->
             <button type="submit" 
-                    class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition-colors">
+                    class="bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
@@ -186,20 +201,26 @@ function addMessage(message, isOwnMessage = false) {
     const otherUser = {{ $otherUser->id }};
     const otherUserName = '{{ $otherUser->name }}';
     const currentUserName = '{{ auth()->user()->name }}';
-    
+    const otherUserAvatar = '{{ $otherUser->avatar ? Storage::url($otherUser->avatar) : '' }}';
+    const currentUserAvatar = '{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : '' }}';
+
+    const avatarHtml = (avatar, name) => avatar
+        ? `<img src="${avatar}" alt="${name}" class="w-full h-full object-cover">`
+        : `<span class="text-white text-sm font-semibold">${name.charAt(0)}</span>`;
+
     if (isOwnMessage) {
         messageDiv.innerHTML = `
             <div class="max-w-xs lg:max-w-md">
                 <div class="flex items-end space-x-2">
-                    <div class="bg-green-500 rounded-lg rounded-br-md px-4 py-2 shadow-sm">
+                    <div class="bg-teal-500 rounded-lg rounded-br-md px-4 py-2 shadow-sm">
                         <p class="text-sm text-white">${message.content}</p>
                         <div class="flex items-center justify-between mt-1">
-                            <span class="text-xs text-green-100">${new Date(message.created_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
-                            <span class="text-xs text-green-100 ml-2">✓</span>
+                            <span class="text-xs text-teal-100">${new Date(message.created_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
+                            <span class="text-xs text-teal-100 ml-2">✓</span>
                         </div>
                     </div>
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-sm font-semibold">${currentUserName.charAt(0)}</span>
+                    <div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-teal-500 flex items-center justify-center">
+                        ${avatarHtml(currentUserAvatar, currentUserName)}
                     </div>
                 </div>
             </div>
@@ -208,8 +229,8 @@ function addMessage(message, isOwnMessage = false) {
         messageDiv.innerHTML = `
             <div class="max-w-xs lg:max-w-md">
                 <div class="flex items-end space-x-2">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-sm font-semibold">${otherUserName.charAt(0)}</span>
+                    <div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-teal-500 flex items-center justify-center">
+                        ${avatarHtml(otherUserAvatar, otherUserName)}
                     </div>
                     <div class="bg-white rounded-lg rounded-bl-md px-4 py-2 shadow-sm">
                         <p class="text-sm text-gray-900">${message.content}</p>

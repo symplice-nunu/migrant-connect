@@ -1,39 +1,35 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class=" mx-auto sm:px-6 lg:px-8 space-y-6">
-            <!-- Test content to verify page loads -->
-            <div class="p-4 sm:p-8 bg-red-100 shadow sm:rounded-lg">
-                <h3 class="text-lg font-medium text-red-900 ">Profile Test - This should be visible</h3>
-                <p class="mt-1 text-sm text-red-700 ">
-                    User: {{ $user->name ?? 'No user' }}<br>
-                    Email: {{ $user->email ?? 'No email' }}<br>
-                    Time: {{ now() }}
-                </p>
+@section('header')
+    <div class="flex items-center space-x-4">
+        <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
+            <i class="fas fa-user text-white"></i>
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-gray-900">Profile Settings</h2>
+            <p class="text-sm text-gray-500">Manage your account information and password.</p>
+        </div>
+    </div>
+@endsection
+
+@section('content')
+    <div class="max-w-3xl space-y-6">
+        <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-200">
+            <div class="max-w-xl">
+                @include('profile.partials.update-profile-information-form')
             </div>
+        </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
+        <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-200">
+            <div class="max-w-xl">
+                @include('profile.partials.update-password-form')
             </div>
+        </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
+        <div class="p-6 bg-white shadow sm:rounded-xl border border-gray-200">
+            <div class="max-w-xl">
+                @include('profile.partials.delete-user-form')
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

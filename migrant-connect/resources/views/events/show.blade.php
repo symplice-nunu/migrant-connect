@@ -5,16 +5,21 @@
     <!-- Event Header Section -->
     <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
         <!-- Event Hero Image -->
-        <div class="h-48 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 relative overflow-hidden">
-            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="h-64 bg-teal-600 relative overflow-hidden">
+            @if($event->image)
+                <img src="{{ Storage::url($event->image) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/40"></div>
+            @endif
             <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-center text-white">
-                    <i class="fas fa-calendar-alt text-6xl mb-4 opacity-80"></i>
-                    <h1 class="text-4xl font-bold">{{ $event->title }}</h1>
+                <div class="text-center text-white px-4">
+                    @if(!$event->image)
+                        <i class="fas fa-calendar-alt text-6xl mb-4 opacity-80"></i>
+                    @endif
+                    <h1 class="text-4xl font-bold drop-shadow-lg">{{ $event->title }}</h1>
                 </div>
             </div>
             <div class="absolute top-4 right-4">
-                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium">
+                <div class="bg-white rounded-full px-4 py-2 text-teal-700 text-sm font-medium">
                     <i class="fas fa-users mr-2"></i>{{ $event->participants->count() }} Participants
                 </div>
             </div>
@@ -140,8 +145,14 @@
                     @foreach ($event->participants as $participant)
                         <div class="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 :bg-gray-600 transition-colors duration-200">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
-                                    {{ substr($participant->user->name ?? 'U', 0, 1) }}
+                                <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                                    @if($participant->user?->avatar)
+                                        <img src="{{ Storage::url($participant->user->avatar) }}" alt="{{ $participant->user->name }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-teal-600 flex items-center justify-center">
+                                            <span class="text-white font-semibold">{{ strtoupper(substr($participant->user->name ?? 'U', 0, 1)) }}</span>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate">

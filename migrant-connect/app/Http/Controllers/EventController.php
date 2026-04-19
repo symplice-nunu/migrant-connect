@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventParticipant;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -37,7 +38,14 @@ class EventController extends Controller
             'location' => 'required|string|max:255',
             'date' => 'required|date',
             'time' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:4096',
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('events', 'public');
+        }
+
         $event = Event::create([
             'creator_id' => Auth::id(),
             'title' => $request->title,
@@ -45,6 +53,7 @@ class EventController extends Controller
             'location' => $request->location,
             'date' => $request->date,
             'time' => $request->time,
+            'image' => $imagePath,
         ]);
         return redirect()->route('events.show', $event->id)->with('success', 'Event created!');
     }
@@ -86,8 +95,18 @@ class EventController extends Controller
             'location' => 'required|string|max:255',
             'date' => 'required|date',
             'time' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:4096',
         ]);
-        $event->update($request->only(['title', 'description', 'location', 'date', 'time']));
+
+        $data = $request->only(['title', 'description', 'location', 'date', 'time']);
+        if ($request->hasFile('image')) {
+            if ($event->image) {
+                Storage::disk('public')->delete($event->image);
+            }
+            $data['image'] = $request->file('image')->store('events', 'public');
+        }
+
+        $event->update($data);
         return redirect()->route('events.show', $event->id)->with('success', 'Event updated!');
     }
 

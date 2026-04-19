@@ -8,7 +8,7 @@
             <div class="flex items-start justify-between mb-6">
                 <div class="flex-1">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-glow-blue">
+                        <div class="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center shadow-glow-blue">
                             <i class="fas fa-comments text-white text-xl"></i>
                         </div>
                         <div>
@@ -81,10 +81,14 @@
                         <div class="flex items-start gap-4">
                             <!-- User Avatar -->
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-glow">
-                                    <span class="text-white font-semibold text-lg">
-                                        {{ strtoupper(substr($post->user->name ?? 'U', 0, 1)) }}
-                                    </span>
+                                <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                                    @if($post->user?->avatar)
+                                        <img src="{{ Storage::url($post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-teal-600 flex items-center justify-center">
+                                            <span class="text-white font-semibold text-lg">{{ strtoupper(substr($post->user->name ?? 'U', 0, 1)) }}</span>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             
@@ -200,133 +204,9 @@
 </div>
 
 <style>
-    /* Additional custom styles for this page */
-    .forum-header {
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-    }
-    
-    .post-card {
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .post-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-        transition: left 0.5s;
-    }
-    
-    .post-card:hover::before {
-        left: 100%;
-    }
-    
-    .post-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-    }
-    
-    .user-avatar {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        transition: transform 0.3s ease;
-    }
-    
-    .post-card:hover .user-avatar {
-        transform: scale(1.1);
-    }
-    
-    .new-badge {
-        animation: pulse 2s infinite;
-    }
-    
-    .stat-card {
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .stat-card:hover::before {
-        opacity: 1;
-    }
-    
-    .stat-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .btn-primary, .btn-secondary {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .btn-primary::before, .btn-secondary::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s;
-    }
-    
-    .btn-primary:hover::before, .btn-secondary:hover::before {
-        left: 100%;
-    }
-    
-    /* Staggered animation for posts */
-    .post-card:nth-child(1) { animation-delay: 0.1s; }
-    .post-card:nth-child(2) { animation-delay: 0.2s; }
-    .post-card:nth-child(3) { animation-delay: 0.3s; }
-    .post-card:nth-child(4) { animation-delay: 0.4s; }
-    .post-card:nth-child(5) { animation-delay: 0.5s; }
-    
-    /* Glassmorphism */
-    .glass {
-        backdrop-filter: blur(20px);
-        background: rgba(255, 255, 255, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-    
-    /* Smooth scrolling for the page */
-    html {
-        scroll-behavior: smooth;
-    }
-    
-    /* Custom scrollbar for the page */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        border-radius: 4px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #5a67d8, #6b46c1);
-    }
+    .post-card { transition: all 0.3s ease; }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); }
+    .stat-card { transition: all 0.3s ease; }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); }
 </style>
 @endsection 

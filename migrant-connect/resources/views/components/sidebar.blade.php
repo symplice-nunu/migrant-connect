@@ -2,7 +2,7 @@
     <!-- Mobile Hamburger Button -->
     <div class="lg:hidden fixed top-4 left-4 z-50">
         <button id="sidebar-toggle"
-                class="hamburger-btn bg-indigo-600 backdrop-blur-xl rounded-xl p-3 shadow-md hover:bg-indigo-700 transition-all duration-200">
+                class="hamburger-btn bg-teal-600 backdrop-blur-xl rounded-xl p-3 shadow-md hover:bg-teal-700 transition-all duration-200">
             <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
                 <span class="hamburger-line w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
                 <span class="hamburger-line w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
@@ -23,7 +23,7 @@
             <!-- Header -->
             <div class="flex items-center justify-between h-16 px-5 border-b border-gray-200 ">
                 <div class="flex items-center space-x-3">
-                    <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center">
+                    <div class="w-9 h-9 bg-teal-600 rounded-lg flex items-center justify-center">
                         <i class="fas fa-globe-americas text-white text-sm"></i>
                     </div>
                     <span class="text-lg font-bold text-gray-900 ">MigrantConnect</span>
@@ -36,8 +36,14 @@
             <!-- User Profile -->
             <div class="px-5 py-4 border-b border-gray-200 ">
                 <div class="flex items-center space-x-3">
-                    <div class="w-9 h-9 bg-indigo-100 rounded-full flex items-center justify-center">
-                        <span class="text-indigo-700 font-semibold text-sm">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                    <div class="w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
+                        @if(Auth::user()->avatar)
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" class="w-full h-full object-cover">
+                        @else
+                            <div class="w-full h-full bg-teal-100 flex items-center justify-center">
+                                <span class="text-teal-700 font-semibold text-sm">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-semibold text-gray-900 truncate">{{ Auth::user()->name }}</p>
@@ -51,38 +57,38 @@
                 <p class="px-3 pt-1 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Menu</p>
 
                 <a href="{{ route('dashboard') }}"
-                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('dashboard') ? 'bg-indigo-50 text-indigo-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
-                    <i class="fas fa-home w-4 text-center {{ request()->routeIs('dashboard') ? 'text-indigo-600 ' : 'text-gray-400' }}"></i>
+                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('dashboard') ? 'bg-teal-50 text-teal-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
+                    <i class="fas fa-home w-4 text-center {{ request()->routeIs('dashboard') ? 'text-teal-600 ' : 'text-gray-400' }}"></i>
                     <span>Dashboard</span>
                     @if(request()->routeIs('dashboard'))
-                        <div class="ml-auto w-1.5 h-1.5 bg-indigo-600 rounded-full"></div>
+                        <div class="ml-auto w-1.5 h-1.5 bg-teal-600 rounded-full"></div>
                     @endif
                 </a>
 
                 <a href="{{ route('events.index') }}"
-                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('events.*') ? 'bg-indigo-50 text-indigo-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
-                    <i class="fas fa-calendar-alt w-4 text-center {{ request()->routeIs('events.*') ? 'text-indigo-600 ' : 'text-gray-400' }}"></i>
+                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('events.*') ? 'bg-teal-50 text-teal-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
+                    <i class="fas fa-calendar-alt w-4 text-center {{ request()->routeIs('events.*') ? 'text-teal-600 ' : 'text-gray-400' }}"></i>
                     <span>Events</span>
                     @if(request()->routeIs('events.*'))
-                        <div class="ml-auto w-1.5 h-1.5 bg-indigo-600 rounded-full"></div>
+                        <div class="ml-auto w-1.5 h-1.5 bg-teal-600 rounded-full"></div>
                     @endif
                 </a>
 
                 <a href="{{ route('forums.index') }}"
-                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('forums.*') ? 'bg-indigo-50 text-indigo-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
-                    <i class="fas fa-comments w-4 text-center {{ request()->routeIs('forums.*') ? 'text-indigo-600 ' : 'text-gray-400' }}"></i>
+                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('forums.*') ? 'bg-teal-50 text-teal-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
+                    <i class="fas fa-comments w-4 text-center {{ request()->routeIs('forums.*') ? 'text-teal-600 ' : 'text-gray-400' }}"></i>
                     <span>Forums</span>
                     @if(request()->routeIs('forums.*'))
-                        <div class="ml-auto w-1.5 h-1.5 bg-indigo-600 rounded-full"></div>
+                        <div class="ml-auto w-1.5 h-1.5 bg-teal-600 rounded-full"></div>
                     @endif
                 </a>
 
                 <a href="{{ route('messages.index') }}"
-                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('messages.*') ? 'bg-indigo-50 text-indigo-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
-                    <i class="fas fa-envelope w-4 text-center {{ request()->routeIs('messages.*') ? 'text-indigo-600 ' : 'text-gray-400' }}"></i>
+                   class="sidebar-link flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs('messages.*') ? 'bg-teal-50 text-teal-700 ' : 'text-gray-700  hover:bg-gray-100 :bg-gray-800 hover:text-gray-900 :text-gray-100' }}">
+                    <i class="fas fa-envelope w-4 text-center {{ request()->routeIs('messages.*') ? 'text-teal-600 ' : 'text-gray-400' }}"></i>
                     <span>Messages</span>
                     @if(request()->routeIs('messages.*'))
-                        <div class="ml-auto w-1.5 h-1.5 bg-indigo-600 rounded-full"></div>
+                        <div class="ml-auto w-1.5 h-1.5 bg-teal-600 rounded-full"></div>
                     @endif
                 </a>
 

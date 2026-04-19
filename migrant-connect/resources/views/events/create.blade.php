@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
             <!-- Header Section -->
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-600 rounded-full mb-4">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
@@ -15,11 +15,11 @@
             
             <!-- Form Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-4">
+                <div class="bg-teal-600 px-6 py-4">
                     <h2 class="text-white font-semibold text-lg">Event Details</h2>
                 </div>
                 
-                <form method="POST" action="{{ route('events.store') }}" class="p-8 space-y-6">
+                <form method="POST" action="{{ route('events.store') }}" class="p-8 space-y-6" enctype="multipart/form-data">
                     @csrf
                     
                     <!-- Title Field -->
@@ -30,7 +30,7 @@
                             </svg>
                             Event Title
                         </label>
-                        <input type="text" name="title" id="title" value="{{ old('title') }}" required
+                        <input type="text" name="title" id="title" value="{{ old('title') }}" 
                                placeholder="Enter event title"
                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
                         @error('title')
@@ -74,7 +74,7 @@
                                 </svg>
                                 Location
                             </label>
-                            <input type="text" name="location" id="location" value="{{ old('location') }}" required
+                            <input type="text" name="location" id="location" value="{{ old('location') }}" 
                                    placeholder="Event location"
                                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
                             @error('location')
@@ -96,7 +96,7 @@
                                 Date
                             </label>
                             <div class="relative">
-                                <input type="text" name="date" id="date" value="{{ old('date') }}" required
+                                <input type="text" name="date" id="date" value="{{ old('date') }}" 
                                        placeholder="Select event date"
                                        class="w-full px-4 py-3 pr-10 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white cursor-pointer">
                                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -124,7 +124,7 @@
                             </svg>
                             Time
                         </label>
-                        <input type="time" name="time" id="time" value="{{ old('time') }}" required
+                        <input type="time" name="time" id="time" value="{{ old('time') }}" 
                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
                         @error('time')
                             <p class="text-sm text-red-500 flex items-center">
@@ -136,6 +136,39 @@
                         @enderror
                     </div>
                     
+                    <!-- Event Image Field -->
+                    <div class="space-y-2">
+                        <label for="image" class="block text-sm font-semibold text-gray-700 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            Event Image <span class="text-gray-400 font-normal ml-1">(optional)</span>
+                        </label>
+                        <div class="relative">
+                            <div id="image-preview" class="hidden mb-3">
+                                <img id="preview-img" src="" alt="Preview" class="w-full max-h-48 object-cover rounded-lg border border-gray-200">
+                            </div>
+                            <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6" id="upload-placeholder">
+                                    <svg class="w-8 h-8 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-sm text-gray-500">Click to upload event image</p>
+                                    <p class="text-xs text-gray-400 mt-1">JPG, PNG, GIF, WEBP up to 4MB</p>
+                                </div>
+                                <input type="file" name="image" id="image" accept="image/*" class="hidden" onchange="previewEventImage(this)">
+                            </label>
+                        </div>
+                        @error('image')
+                            <p class="text-sm text-red-500 flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
                     <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-gray-100">
                         <a href="{{ route('events.index') }}" 
@@ -146,7 +179,7 @@
                             Cancel
                         </a>
                         <button type="submit" 
-                                class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                class="inline-flex items-center justify-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
@@ -159,6 +192,21 @@
     </div>
 
     <script>
+        function previewEventImage(input) {
+            const preview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            const placeholder = document.getElementById('upload-placeholder');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    placeholder.innerHTML = '<p class="text-sm text-teal-600 font-medium">Image selected — click to change</p>';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Flatpickr datepicker
             flatpickr("#date", {

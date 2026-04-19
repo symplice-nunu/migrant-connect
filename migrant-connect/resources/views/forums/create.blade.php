@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
             <!-- Header -->
             <div class="text-center mb-12">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-lg mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-teal-600 rounded-2xl shadow-lg mb-6">
                     <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
                     </svg>
@@ -16,9 +16,9 @@
             <!-- Form Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                 <!-- Card Header -->
-                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
+                <div class="bg-teal-600 px-8 py-6">
                     <h2 class="text-xl font-semibold text-white">Forum Information</h2>
-                    <p class="text-blue-100 mt-1">Tell us about your new forum</p>
+                    <p class="text-teal-100 mt-1">Tell us about your new forum</p>
                 </div>
                 
                 <!-- Form Content -->
@@ -37,7 +37,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                                     </svg>
                                 </div>
-                                <input type="text" name="title" id="title" value="{{ old('title') }}" required
+                                <input type="text" name="title" id="title" value="{{ old('title') }}" 
                                        placeholder="Enter a compelling title for your forum"
                                        class="pl-12 block w-full border-2 border-gray-200 rounded-xl py-4 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-lg">
                             </div>
@@ -86,7 +86,7 @@
                                 Cancel
                             </a>
                             <button type="submit" 
-                                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl">
+                                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-xl text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl">
                                 <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>

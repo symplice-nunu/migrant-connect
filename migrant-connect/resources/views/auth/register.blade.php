@@ -1,11 +1,11 @@
 <x-guest-layout>
     <!-- Top accent bar -->
-    <div class="-mx-6 -mt-8 mb-7 h-1 bg-indigo-600 rounded-t-2xl"></div>
+    <div class="-mx-6 -mt-8 mb-7 h-1 bg-teal-600 rounded-t-2xl"></div>
 
     <!-- Header -->
     <div class="mb-6 text-center">
-        <div class="inline-flex items-center justify-center w-11 h-11 bg-indigo-50 rounded-2xl mb-3">
-            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="inline-flex items-center justify-center w-11 h-11 bg-teal-50 rounded-2xl mb-3">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
             </svg>
         </div>
@@ -26,10 +26,10 @@
                     </svg>
                 </div>
                 <input id="name" type="text" name="name" value="{{ old('name') }}" autofocus autocomplete="name" placeholder="John Doe"
-                    class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition duration-150" />
+                    class="w-full pl-10 pr-4 py-2.5 text-sm border rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition duration-150 {{ $errors->has('name') ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500' }}" />
             </div>
             @error('name')
-                <p class="mt-1.5 text-xs text-gray-500">{{ $message }}</p>
+                <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
@@ -43,10 +43,10 @@
                     </svg>
                 </div>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="username" placeholder="you@example.com"
-                    class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition duration-150" />
+                    class="w-full pl-10 pr-4 py-2.5 text-sm border rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition duration-150 {{ $errors->has('email') ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500' }}" />
             </div>
             @error('email')
-                <p class="mt-1.5 text-xs text-gray-500">{{ $message }}</p>
+                <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
@@ -60,7 +60,7 @@
                     </svg>
                 </div>
                 <select id="location" name="location"
-                    class="w-full appearance-none pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition duration-150">
+                    class="w-full appearance-none pl-10 pr-10 py-2.5 text-sm border rounded-xl bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition duration-150 {{ $errors->has('location') ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500' }}">
                     <option value="">Select your country</option>
                     <option value="Afghanistan" {{ old('location') == 'Afghanistan' ? 'selected' : '' }}>Afghanistan</option>
                     <option value="Albania" {{ old('location') == 'Albania' ? 'selected' : '' }}>Albania</option>
@@ -265,7 +265,7 @@
                 </div>
             </div>
             @error('location')
-                <p class="mt-1.5 text-xs text-gray-500">{{ $message }}</p>
+                <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
@@ -281,7 +281,7 @@
                         </svg>
                     </div>
                     <input id="password" type="password" name="password" autocomplete="new-password" placeholder="••••••••"
-                        class="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition duration-150" />
+                        class="w-full pl-10 pr-10 py-2.5 text-sm border rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition duration-150 {{ $errors->has('password') ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500' }}" />
                     <button type="button" onclick="togglePassword('password', this)" tabindex="-1"
                         class="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-150">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -291,7 +291,7 @@
                     </button>
                 </div>
                 @error('password')
-                    <p class="mt-1.5 text-xs text-gray-500">{{ $message }}</p>
+                    <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -305,7 +305,7 @@
                         </svg>
                     </div>
                     <input id="password_confirmation" type="password" name="password_confirmation" autocomplete="new-password" placeholder="••••••••"
-                        class="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition duration-150" />
+                        class="w-full pl-10 pr-10 py-2.5 text-sm border rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition duration-150 {{ $errors->has('password_confirmation') ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500' }}" />
                     <button type="button" onclick="togglePassword('password_confirmation', this)" tabindex="-1"
                         class="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-150">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@
                     </button>
                 </div>
                 @error('password_confirmation')
-                    <p class="mt-1.5 text-xs text-gray-500">{{ $message }}</p>
+                    <p class="mt-1.5 text-xs text-red-600">{{ $message }}</p>
                 @enderror
             </div>
         </div>
@@ -323,7 +323,7 @@
         <!-- Submit -->
         <div class="pt-2">
             <button type="submit"
-                class="w-full flex justify-center items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow-md active:scale-95 transition-all duration-150">
+                class="w-full flex justify-center items-center gap-2 px-5 py-3 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow-md active:scale-95 transition-all duration-150">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                 </svg>
@@ -335,7 +335,7 @@
         <div class="text-center pt-3 border-t border-gray-100">
             <p class="text-sm text-gray-500">
                 Already have an account?
-                <a href="{{ route('login') }}" class="font-semibold text-indigo-600 hover:text-indigo-700 transition-colors duration-150">
+                <a href="{{ route('login') }}" class="font-semibold text-teal-600 hover:text-teal-700 transition-colors duration-150">
                     Log in
                 </a>
             </p>

@@ -22,7 +22,7 @@
 
                     <!-- Logo -->
                     <a href="/" class="flex items-center space-x-2.5 group flex-shrink-0">
-                        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-sm group-hover:bg-indigo-700 transition-colors duration-150">
+                        <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center shadow-sm group-hover:bg-teal-700 transition-colors duration-150">
                             <i class="fas fa-globe-americas text-white text-sm"></i>
                         </div>
                         <span class="text-base font-bold text-gray-900">Migrant Connect</span>
@@ -40,7 +40,7 @@
                         @if (Route::has('login'))
                             @auth
                                 <a href="{{ url('/dashboard') }}"
-                                   class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors duration-150">
+                                   class="inline-flex items-center px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors duration-150">
                                     Dashboard
                                 </a>
                             @else
@@ -50,7 +50,7 @@
                                 </a>
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
-                                       class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors duration-150">
+                                       class="inline-flex items-center px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors duration-150">
                                         Get started free
                                     </a>
                                 @endif
@@ -72,22 +72,22 @@
                  class="hidden md:hidden bg-white border-t border-gray-200 shadow-lg">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col space-y-1">
                     <a href="#features"
-                       class="px-4 py-3 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-150">
+                       class="px-4 py-3 text-sm font-medium text-gray-600 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors duration-150">
                         Features
                     </a>
                     <a href="#how-it-works"
-                       class="px-4 py-3 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-150">
+                       class="px-4 py-3 text-sm font-medium text-gray-600 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors duration-150">
                         How it works
                     </a>
                     <a href="#community"
-                       class="px-4 py-3 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-150">
+                       class="px-4 py-3 text-sm font-medium text-gray-600 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors duration-150">
                         Community
                     </a>
                     <div class="pt-3 border-t border-gray-100 flex flex-col space-y-2">
                         @if (Route::has('login'))
                             @auth
                                 <a href="{{ url('/dashboard') }}"
-                                   class="inline-flex items-center justify-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors duration-150">
+                                   class="inline-flex items-center justify-center px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl transition-colors duration-150">
                                     Dashboard
                                 </a>
                             @else
@@ -97,7 +97,7 @@
                                 </a>
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
-                                       class="inline-flex items-center justify-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors duration-150">
+                                       class="inline-flex items-center justify-center px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl transition-colors duration-150">
                                         Get started free
                                     </a>
                                 @endif
@@ -117,14 +117,14 @@
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white pointer-events-none"></div>
 
             <!-- Indigo glow orb -->
-            <div class="absolute top-20 left-1/2 -translate-x-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-100 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+            <div class="absolute top-20 left-1/2 -translate-x-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-teal-100 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
 
             <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
 
                     <!-- Badge -->
-                    <div class="inline-flex items-center space-x-2 bg-white border border-indigo-100 text-indigo-600 text-xs font-semibold px-4 py-2 rounded-full mb-8 shadow-sm ring-4 ring-indigo-500/10">
-                        <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
+                    <div class="inline-flex items-center space-x-2 bg-white border border-teal-100 text-teal-600 text-xs font-semibold px-4 py-2 rounded-full mb-8 shadow-sm ring-4 ring-teal-500/10">
+                        <div class="w-1.5 h-1.5 bg-teal-500 rounded-full"></div>
                         <span>Community Platform for Migrants</span>
                     </div>
 
@@ -132,7 +132,7 @@
                     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight tracking-tight mb-6">
                         Your new home<br class="hidden sm:block">
                         starts with
-                        <span class="text-indigo-600"> people.</span>
+                        <span class="text-teal-600"> people.</span>
                     </h1>
 
                     <p class="text-base sm:text-lg md:text-xl text-gray-500 leading-relaxed mb-10 max-w-2xl mx-auto">
@@ -146,7 +146,7 @@
                             @guest
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
-                                       class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white text-base font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-150 active:scale-95">
+                                       class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 bg-teal-600 hover:bg-teal-700 text-white text-base font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-150 active:scale-95">
                                         <i class="fas fa-arrow-right mr-2 text-sm"></i>
                                         Create free account
                                     </a>
@@ -157,7 +157,7 @@
                                 </a>
                             @else
                                 <a href="{{ url('/dashboard') }}"
-                                   class="inline-flex items-center justify-center px-7 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white text-base font-semibold rounded-xl shadow-md transition-all duration-150">
+                                   class="inline-flex items-center justify-center px-7 py-3.5 bg-teal-600 hover:bg-teal-700 text-white text-base font-semibold rounded-xl shadow-md transition-all duration-150">
                                     Go to Dashboard
                                 </a>
                             @endguest
@@ -167,23 +167,23 @@
                     <!-- Social proof -->
                     <div class="inline-flex flex-wrap justify-center gap-x-6 gap-y-3 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl px-6 sm:px-8 py-4 shadow-sm text-sm">
                         <div class="flex items-center space-x-2 text-gray-500">
-                            <span class="font-bold text-gray-900 text-base">15,000+</span>
+                            <span class="font-bold text-gray-900 text-base">{{ $totalMembers }}</span>
                             <span>members</span>
                         </div>
                         <div class="w-px h-4 bg-gray-200 self-center hidden sm:block"></div>
                         <div class="flex items-center space-x-2 text-gray-500">
-                            <span class="font-bold text-gray-900 text-base">750+</span>
+                            <span class="font-bold text-gray-900 text-base">{{ $totalEvents }}</span>
                             <span>events</span>
                         </div>
                         <div class="w-px h-4 bg-gray-200 self-center hidden sm:block"></div>
                         <div class="flex items-center space-x-2 text-gray-500">
-                            <span class="font-bold text-gray-900 text-base">85+</span>
-                            <span>cities</span>
+                            <span class="font-bold text-gray-900 text-base">{{ $totalForums }}</span>
+                            <span>forums</span>
                         </div>
                         <div class="w-px h-4 bg-gray-200 self-center hidden sm:block"></div>
                         <div class="flex items-center space-x-2 text-gray-500">
-                            <span class="font-bold text-gray-900 text-base">98%</span>
-                            <span>satisfaction</span>
+                            <span class="font-bold text-gray-900 text-base">{{ $totalPosts }}</span>
+                            <span>posts</span>
                         </div>
                     </div>
 
@@ -198,7 +198,7 @@
                 <!-- Section heading -->
                 <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 sm:mb-14">
                     <div class="max-w-lg">
-                        <p class="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">What we offer</p>
+                        <p class="text-xs font-semibold text-teal-500 uppercase tracking-widest mb-3">What we offer</p>
                         <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">Everything in one place</h2>
                     </div>
                     <p class="text-sm sm:text-base text-gray-500 max-w-xs md:text-right">
@@ -209,9 +209,9 @@
                 <!-- Feature grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                    <div class="bg-white border border-gray-200 hover:border-indigo-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-calendar-alt text-indigo-600"></i>
+                    <div class="bg-white border border-gray-200 hover:border-teal-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="w-11 h-11 bg-teal-50 border border-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-calendar-alt text-teal-600"></i>
                         </div>
                         <div>
                             <h3 class="text-base font-semibold text-gray-900 mb-2">Community Events</h3>
@@ -219,9 +219,9 @@
                         </div>
                     </div>
 
-                    <div class="bg-white border border-gray-200 hover:border-indigo-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-comments text-indigo-600"></i>
+                    <div class="bg-white border border-gray-200 hover:border-teal-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="w-11 h-11 bg-teal-50 border border-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-comments text-teal-600"></i>
                         </div>
                         <div>
                             <h3 class="text-base font-semibold text-gray-900 mb-2">Discussion Forums</h3>
@@ -229,9 +229,9 @@
                         </div>
                     </div>
 
-                    <div class="bg-white border border-gray-200 hover:border-indigo-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-envelope text-indigo-600"></i>
+                    <div class="bg-white border border-gray-200 hover:border-teal-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="w-11 h-11 bg-teal-50 border border-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-envelope text-teal-600"></i>
                         </div>
                         <div>
                             <h3 class="text-base font-semibold text-gray-900 mb-2">Direct Messaging</h3>
@@ -239,9 +239,9 @@
                         </div>
                     </div>
 
-                    <div class="bg-white border border-gray-200 hover:border-indigo-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-user-circle text-indigo-600"></i>
+                    <div class="bg-white border border-gray-200 hover:border-teal-200 rounded-2xl p-6 sm:p-7 flex items-start space-x-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="w-11 h-11 bg-teal-50 border border-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-user-circle text-teal-600"></i>
                         </div>
                         <div>
                             <h3 class="text-base font-semibold text-gray-900 mb-2">Personal Profiles</h3>
@@ -258,7 +258,7 @@
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div class="text-center max-w-xl mx-auto mb-12 sm:mb-16">
-                    <p class="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">Simple to start</p>
+                    <p class="text-xs font-semibold text-teal-500 uppercase tracking-widest mb-3">Simple to start</p>
                     <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Up and running in minutes</h2>
                     <p class="text-sm sm:text-base text-gray-500 leading-relaxed">No complicated setup. Just sign up and start connecting with your new community.</p>
                 </div>
@@ -266,24 +266,24 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
 
                     <div class="relative bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
-                        <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold mb-5 sm:mb-6 shadow-sm">1</div>
+                        <div class="w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center text-sm font-bold mb-5 sm:mb-6 shadow-sm">1</div>
                         <h3 class="text-base font-semibold text-gray-900 mb-2">Create your account</h3>
                         <p class="text-sm text-gray-500 leading-relaxed">Sign up for free in under a minute. No credit card, no commitment.</p>
                         <!-- Connector arrow (desktop only) -->
-                        <div class="hidden sm:block absolute top-11 -right-3 w-6 h-px bg-indigo-200 z-10"></div>
+                        <div class="hidden sm:block absolute top-11 -right-3 w-6 h-px bg-teal-200 z-10"></div>
                     </div>
 
                     <div class="relative bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
-                        <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold mb-5 sm:mb-6 shadow-sm">2</div>
+                        <div class="w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center text-sm font-bold mb-5 sm:mb-6 shadow-sm">2</div>
                         <h3 class="text-base font-semibold text-gray-900 mb-2">Set up your profile</h3>
                         <p class="text-sm text-gray-500 leading-relaxed">Add your location, background, and what you're looking for in your new community.</p>
-                        <div class="hidden sm:block absolute top-11 -right-3 w-6 h-px bg-indigo-200 z-10"></div>
+                        <div class="hidden sm:block absolute top-11 -right-3 w-6 h-px bg-teal-200 z-10"></div>
                     </div>
 
-                    <div class="bg-indigo-600 rounded-2xl p-6 sm:p-8 border border-indigo-600 text-white">
+                    <div class="bg-teal-600 rounded-2xl p-6 sm:p-8 border border-teal-600 text-white">
                         <div class="w-10 h-10 bg-white/20 text-white rounded-full flex items-center justify-center text-sm font-bold mb-5 sm:mb-6">3</div>
                         <h3 class="text-base font-semibold mb-2">Start connecting</h3>
-                        <p class="text-sm text-indigo-100 leading-relaxed">Browse events, join forums, and message people who share your interests and background.</p>
+                        <p class="text-sm text-teal-100 leading-relaxed">Browse events, join forums, and message people who share your interests and background.</p>
                     </div>
 
                 </div>
@@ -296,23 +296,23 @@
                 <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-gray-100 border border-gray-100 rounded-2xl overflow-hidden my-10 sm:my-12">
 
                     <div class="flex flex-col items-center justify-center py-8 sm:py-10 px-4 sm:px-6 bg-white hover:bg-gray-50 transition-colors duration-150">
-                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">15,000+</p>
+                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">{{ $totalMembers }}</p>
                         <p class="text-xs sm:text-sm text-gray-500 text-center">Active Members</p>
                     </div>
 
                     <div class="flex flex-col items-center justify-center py-8 sm:py-10 px-4 sm:px-6 bg-white hover:bg-gray-50 transition-colors duration-150">
-                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">750+</p>
+                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">{{ $totalEvents }}</p>
                         <p class="text-xs sm:text-sm text-gray-500 text-center">Events Created</p>
                     </div>
 
                     <div class="flex flex-col items-center justify-center py-8 sm:py-10 px-4 sm:px-6 bg-white hover:bg-gray-50 transition-colors duration-150">
-                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">85+</p>
-                        <p class="text-xs sm:text-sm text-gray-500 text-center">Cities Covered</p>
+                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">{{ $totalForums }}</p>
+                        <p class="text-xs sm:text-sm text-gray-500 text-center">Active Forums</p>
                     </div>
 
                     <div class="flex flex-col items-center justify-center py-8 sm:py-10 px-4 sm:px-6 bg-white hover:bg-gray-50 transition-colors duration-150">
-                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">98%</p>
-                        <p class="text-xs sm:text-sm text-gray-500 text-center">Satisfaction Rate</p>
+                        <p class="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">{{ $totalPosts }}</p>
+                        <p class="text-xs sm:text-sm text-gray-500 text-center">Total Posts</p>
                     </div>
 
                 </div>
@@ -322,14 +322,14 @@
         <!-- ── CTA ── -->
         <section class="py-16 sm:py-24 bg-gray-950 relative overflow-hidden">
             <!-- Top line accent -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-px bg-gradient-to-r from-transparent via-teal-500/40 to-transparent"></div>
             <!-- Glow -->
-            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-teal-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-                <div class="inline-flex items-center space-x-2 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold px-4 py-2 rounded-full mb-8">
-                    <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full"></div>
+                <div class="inline-flex items-center space-x-2 bg-teal-600/10 border border-teal-500/20 text-teal-400 text-xs font-semibold px-4 py-2 rounded-full mb-8">
+                    <div class="w-1.5 h-1.5 bg-teal-400 rounded-full"></div>
                     <span>Free to join</span>
                 </div>
 
@@ -345,7 +345,7 @@
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}"
                        class="inline-flex items-center bg-white hover:bg-gray-100 text-gray-900 font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl transition-colors duration-150 shadow-lg text-sm sm:text-base">
-                        <i class="fas fa-arrow-right mr-2 text-indigo-600 text-sm"></i>
+                        <i class="fas fa-arrow-right mr-2 text-teal-600 text-sm"></i>
                         Join the community — it's free
                     </a>
                 @endif
@@ -363,7 +363,7 @@
                     <!-- Brand -->
                     <div class="col-span-2">
                         <div class="flex items-center space-x-2.5 mb-4">
-                            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center shadow-sm">
                                 <i class="fas fa-globe-americas text-white text-sm"></i>
                             </div>
                             <span class="text-sm font-bold text-white">Migrant Connect</span>

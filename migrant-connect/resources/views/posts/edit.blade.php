@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
+    <div class="min-h-screen bg-gray-50 py-8">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header Section -->
             <div class="text-center mb-8">
@@ -11,7 +11,7 @@
             <!-- Back Link -->
             <div class="mb-6">
                 <a href="{{ route('posts.show', $post->id) }}" 
-                   class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
+                   class="inline-flex items-center text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200">
                     <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -57,7 +57,7 @@
                                     name="content" 
                                     id="content" 
                                     rows="8" 
-                                    required
+                                    
                                     class="block w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 resize-none"
                                     placeholder="Update your post content here...">{{ old('content', $post->content) }}</textarea>
                                 <div class="absolute bottom-3 right-3 text-xs text-gray-400">
@@ -84,7 +84,7 @@
                                 Cancel
                             </a>
                             <button type="submit" 
-                                    class="bg-blue-500 flex items-center justify-center hover:bg-blue-700 text-white border border-gray-500 hover:border-gray-700 font-bold py-2 px-4 rounded">
+                                    class="bg-teal-600 flex items-center justify-center hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">
                                 <svg class="w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>

@@ -3,10 +3,10 @@
 @section('content')
 <div class="h-screen flex flex-col bg-gray-100">
     <!-- Header -->
-    <div class="bg-green-500 px-4 py-3">
+    <div class="bg-teal-500 px-4 py-3">
         <div class="flex items-center space-x-3">
             <a href="{{ route('messages.index') }}" 
-               class="text-white hover:text-green-100">
+               class="text-white hover:text-teal-100">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -28,14 +28,14 @@
                 <input type="text" 
                        id="user-search"
                        placeholder="Search users..." 
-                       class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500">
+                       class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500">
             </div>
             
             <!-- Location Filter -->
             <div class="w-48">
                 <form method="GET" action="{{ route('messages.create') }}" id="location-filter-form">
                     <select name="location" id="location-filter" 
-                            class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                            class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
                             onchange="this.form.submit()">
                         <option value="">All Locations ({{ $totalUsers }} users)</option>
                         @foreach($locations as $location)
@@ -62,8 +62,8 @@
                     </label>
                 </div>
                 <div class="p-4">
-                    <select name="receiver_id" id="receiver_id" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    <select name="receiver_id" id="receiver_id" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
                         <option value="">Choose a user...</option>
                         @foreach($users as $user)
                             <option value="{{ $user->id }}" {{ old('receiver_id') == $user->id ? 'selected' : '' }}>
@@ -88,9 +88,9 @@
                     <textarea 
                         name="content" 
                         id="content"
-                        required 
+                         
                         placeholder="Type your message here..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
                         rows="4"
                     >{{ old('content') }}</textarea>
                     @error('content')
@@ -106,7 +106,7 @@
                     Cancel
                 </a>
                 <button type="submit" 
-                        class="px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors">
+                        class="px-6 py-2 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-colors">
                     Send Message
                 </button>
             </div>
@@ -145,7 +145,7 @@
                         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
                              onclick="showUserProfile({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->location ?? 'No location' }}', '{{ $user->created_at->format('M Y') }}')">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                <div class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
                                     <span class="text-white font-semibold">
                                         {{ substr($user->name, 0, 1) }}
                                     </span>
@@ -159,7 +159,7 @@
                                     </p>
                                     <div class="flex items-center space-x-1 mt-1">
                                         @if($user->location)
-                                            <span class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full flex items-center">
+                                            <span class="text-xs text-teal-600 bg-teal-100 px-2 py-1 rounded-full flex items-center">
                                                 <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                                 </svg>
@@ -177,7 +177,7 @@
                                 </div>
                                 <button type="button" 
                                         onclick="event.stopPropagation(); selectUser({{ $user->id }}, '{{ $user->name }}')"
-                                        class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm rounded-lg transition-colors">
+                                        class="px-3 py-1 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg transition-colors">
                                     Message
                                 </button>
                             </div>
@@ -195,11 +195,11 @@
                         </svg>
                         <h3 class="mt-2 text-sm font-medium text-gray-900">No users found</h3>
                         <p class="mt-1 text-sm text-gray-500">
-                            No users found in <span class="font-medium text-green-600">{{ request('location') }}</span>. Try selecting a different location or clear the filter.
+                            No users found in <span class="font-medium text-teal-600">{{ request('location') }}</span>. Try selecting a different location or clear the filter.
                         </p>
                         <div class="mt-4">
                             <a href="{{ route('messages.create') }}" 
-                               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200">
+                               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-teal-700 bg-teal-100 hover:bg-teal-200">
                                 Clear Filter
                             </a>
                         </div>
@@ -217,7 +217,7 @@
                                     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
                                          onclick="showUserProfile({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->location ?? 'No location' }}', '{{ $user->created_at->format('M Y') }}')">
                                         <div class="flex items-center space-x-3">
-                                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                            <div class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
                                                 <span class="text-white font-semibold">
                                                     {{ substr($user->name, 0, 1) }}
                                                 </span>
@@ -231,7 +231,7 @@
                                                 </p>
                                                 <div class="flex items-center space-x-1 mt-1">
                                                     @if($user->location)
-                                                        <span class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full flex items-center">
+                                                        <span class="text-xs text-teal-600 bg-teal-100 px-2 py-1 rounded-full flex items-center">
                                                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                                             </svg>
@@ -249,7 +249,7 @@
                                             </div>
                                             <button type="button" 
                                                     onclick="event.stopPropagation(); selectUser({{ $user->id }}, '{{ $user->name }}')"
-                                                    class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm rounded-lg transition-colors">
+                                                    class="px-3 py-1 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg transition-colors">
                                                 Message
                                             </button>
                                         </div>
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
             quickStartCards.forEach(card => {
                 const userName = card.querySelector('.text-gray-900').textContent.toLowerCase();
                 const userEmail = card.querySelector('.text-gray-500').textContent.toLowerCase();
-                const userLocation = card.querySelector('.text-green-600')?.textContent.toLowerCase() || '';
+                const userLocation = card.querySelector('.text-teal-600')?.textContent.toLowerCase() || '';
                 
                 if (userName.includes(searchTerm) || userEmail.includes(searchTerm) || userLocation.includes(searchTerm)) {
                     card.style.display = 'block';
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         
         <div class="flex items-center space-x-4 mb-6">
-            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
+            <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center">
                 <span id="profile-user-avatar" class="text-white text-xl font-bold"></span>
             </div>
             <div>
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </button>
             <button type="button" 
                     onclick="selectUserFromProfile()"
-                    class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors">
+                    class="px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-colors">
                 Send Message
             </button>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
+    <div class="min-h-screen bg-gray-50 py-8">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header Section -->
             <div class="text-center mb-8">
@@ -11,7 +11,7 @@
             <!-- Form Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                 <!-- Card Header -->
-                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+                <div class="bg-teal-600 px-6 py-4">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
                                     name="content" 
                                     id="content" 
                                     rows="8" 
-                                    required
+                                    
                                     class="block w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-none"
                                     placeholder="Share your thoughts, ideas, or questions with the community...">{{ old('content') }}</textarea>
                                 <div class="absolute bottom-3 right-3 text-xs text-gray-400">
@@ -74,7 +74,7 @@
                                 Cancel
                             </a>
                             <button type="submit" 
-                                    class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg">
+                                    class="inline-flex items-center justify-center px-6 py-3 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg">
                                 <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
